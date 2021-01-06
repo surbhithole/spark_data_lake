@@ -4,7 +4,7 @@ In this project I am creating an ETL pipline to extract data Songs Data from S3 
 
 ## Datasets Used
 1) Contains Songs information
-2) Contains Log information about the users
+2) Contains Log information about the users and the songs they listen to, etc
 
 ## Data Model
 

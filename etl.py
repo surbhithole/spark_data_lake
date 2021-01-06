@@ -75,7 +75,7 @@ def process_log_data(spark, input_data, output_data):
     print("Created time table")
     
     # read in song data to use for songplays table
-    song_df = spark.read.json(os.path.join(input_data, "song-data/A/A/A/*.json"))
+    song_df = spark.read.json(os.path.join(input_data, "song-data/*/*/*/*.json"))
 
     # extract columns from joined song and log datasets to create songplays table 
     songplays_table = song_df.join(df, (song_df.artist_name == df.artist) &

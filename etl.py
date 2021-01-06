@@ -22,6 +22,15 @@ def create_spark_session():
     return spark
     
 def process_song_data(spark, input_data, output_data):
+    """
+    Description: This function loads song_data from S3 and processes it by extracting the songs and artist tables
+                and then again loaded back to S3
+        
+    Parameters:
+            spark       : Spark Session
+            input_data  : location of song_data json files with the songs metadata
+            output_data : S3 bucket were dimensional tables in parquet format will be stored
+    """
     # get filepath to song data file
     song_data = input_data + "song_data/*/*/*/*.json"
     print("****************** Reading songs Data ***********************")
@@ -43,6 +52,15 @@ def process_song_data(spark, input_data, output_data):
 
 
 def process_log_data(spark, input_data, output_data):
+    """
+        Description: This function loads log_data from S3 and processes it by extracting the songs and artist tables
+                    and then again loaded back to S3. Also output from previous function is used in by spark.read.json command
+        
+        Parameters:
+            spark       : Spark Session
+            input_data  : location of log_data json files with the events data
+            output_data : S3 bucket were dimensional tables in parquet format will be stored
+    """
     # get filepath to log data file
     log_data = input_data + "log_data/*/*/*/*.json"
     print("****************** Reading logs Data ***********************")
@@ -87,6 +105,9 @@ def process_log_data(spark, input_data, output_data):
 
 
 def main():
+    """
+    Extract songs and events data from S3, Transform it into dimensional tables format, and Load it back to S3 in Parquet format
+    """
     print("----------Starting the Spark Data Pipeline---------------")
     print("************ Creating connection to spark *************")
     spark = create_spark_session()
